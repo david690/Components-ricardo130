@@ -20,6 +20,7 @@ public class JTextFieldPlaceHolder2 extends JTextField {
 
     public String PlaceHolder = "Buscar...";
     private String temp = PlaceHolder;
+    private boolean pintar = true;
 
     public String getPlaceHolder() {
         return PlaceHolder;
@@ -27,6 +28,7 @@ public class JTextFieldPlaceHolder2 extends JTextField {
 
     public void setPlaceHolder(String PlaceHolder) {
         this.PlaceHolder = PlaceHolder;
+        temp = PlaceHolder;
     }
 
     public JTextFieldPlaceHolder2() {
@@ -35,15 +37,11 @@ public class JTextFieldPlaceHolder2 extends JTextField {
         this.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                if (JTextFieldPlaceHolder2.this.getText().length() - 1 <= 0) {
+                if (JTextFieldPlaceHolder2.this.getText().length() == 0 && pintar == true) {
                     PlaceHolder = temp;
                     JTextFieldPlaceHolder2.super.paintComponent(JTextFieldPlaceHolder2.this.getGraphics());
+                    pintar = false;
                 }
-                if (JTextFieldPlaceHolder2.this.getText().length() + 1 > 0) {
-                    PlaceHolder = "";
-                    JTextFieldPlaceHolder2.super.paintComponent(JTextFieldPlaceHolder2.this.getGraphics());
-                }
-                System.out.println(JTextFieldPlaceHolder2.this.getText().length());
             }
 
             @Override
@@ -53,7 +51,11 @@ public class JTextFieldPlaceHolder2 extends JTextField {
 
             @Override
             public void keyReleased(KeyEvent e) {
-
+                if (JTextFieldPlaceHolder2.this.getText().length() > 0 && pintar == false) {
+                    PlaceHolder = "";
+                    JTextFieldPlaceHolder2.super.paintComponent(JTextFieldPlaceHolder2.this.getGraphics());
+                    pintar = true;
+                }
             }
         });
     }

@@ -27,6 +27,7 @@ public class JTextFieldPlaceHolder extends JTextField {
 
     public void setPlaceHolder(String PlaceHolder) {
         this.PlaceHolder = PlaceHolder;
+        temp = PlaceHolder;
     }
 
     public JTextFieldPlaceHolder() {
