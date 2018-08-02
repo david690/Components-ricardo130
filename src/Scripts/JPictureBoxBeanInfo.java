@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Scripts;
 
 import java.awt.Image;
 import java.beans.SimpleBeanInfo;
 
 /**
- * 
+ *
  * @author ricardo130
  */
-public class JPanelImageBeanInfo extends SimpleBeanInfo {
+public class JPictureBoxBeanInfo extends SimpleBeanInfo {
+
     Image icon16A;
     Image icon16B;
     Image icon32A;
     Image icon32B;
 
-    public JPanelImageBeanInfo() {
+    public JPictureBoxBeanInfo() {
         icon16A = loadImage("/Images/IconBeanInfo16.png");
         icon16B = loadImage("/Images/IconBeanInfo16.png");
         icon32A = loadImage("/Images/IconBeanInfo32.png");

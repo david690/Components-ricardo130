@@ -21,7 +21,7 @@ public class JDesktopPaneImage extends JDesktopPane {
     private Icon icon;
     private Image image;
     private ImageIcon ii;
-    Dimension d = new Dimension(100, 100);
+    private final Dimension d = new Dimension(100, 100);
 
     public JDesktopPaneImage() {
         this.setSize(d);

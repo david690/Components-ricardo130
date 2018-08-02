@@ -6,48 +6,28 @@
 package Scripts;
 
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.accessibility.Accessible;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 /**
  *
  * @author ricardo130
  */
-public class Clock extends JLabel implements SwingConstants, Accessible {
+public class Clock extends JLabel {
 
     int hour = 0, minute = 0, second = 0;
     String hh = "", mm = "", ss = "";
     Fonts.Fuentes fuente = new Fonts.Fuentes();
 
     public Clock() {
-
-        GetCurrentHour();
         
-        this.setFont(fuente.fuente(fuente.Consolas, fuente.Plain, this.getFont().getSize()));
+        Clock.this.setFont(fuente.fuente(fuente.Consolas, fuente.Plain, Clock.this.getFont().getSize()));
 
         new Thread(new Runnable() {
-
             @Override
             public void run() {
                 try {
                     while (true) {
-                        second++;
-                        if (second == 60) {
-                            second = 0;
-                            minute++;
-                        }
-                        if (minute == 60) {
-                            minute = 0;
-                            hour++;
-                        }
-                        if (hour == 24) {
-                            second = 0;
-                            minute = 0;
-                            hour = 0;
-                        }
+                        GetCurrentHour();
                         hh = String.valueOf(hour);
                         mm = String.valueOf(minute);
                         ss = String.valueOf(second);
@@ -64,11 +44,10 @@ public class Clock extends JLabel implements SwingConstants, Accessible {
                         Thread.sleep(1000);
                     }
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(Clock.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
             }
         }).start();
-
     }
 
     private void GetCurrentHour() {
